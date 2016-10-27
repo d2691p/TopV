@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="topv">
+	<head>
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="./css/custom.css" />
+
+	</head>
+	<body>
+
+		<div class="container" ng-controller="topVController as topVCtrl">
+			<div ng-include="'includes/search-bar.html'">
+			</div>
+			<div class="row" style="border:1px solid red">
+				<ul>
+					<li ng-repeat="channel in channelIds">
+						{{channel.channelId}}
+					</li>
+				</ul>
+				<br/>
+				<ul>
+					<li ng-repeat="video in videos">
+						{{video.title}}
+					</li>
+			</div>
+		</div>
+		
+
+
+
+		<script type="text/javascript" src="./js/angular.min.js"></script>
+		<script type="text/javascript" src="./app.js"></script>
+		<script type="text/javascript" src="./js/underscore-min.js"></script>
+	</body>
+</html>
+
