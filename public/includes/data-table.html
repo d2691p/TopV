@@ -1,0 +1,18 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<td>Title</td>
+			<td>Thumbnail</td>
+			<td>Views</td>
+			<td>Likes</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="video in videos">
+			<td>{{video.title}}</td>
+			<td><a ng-href="https://www.youtube.com/watch?v={{video.resourceId.videoId}}"><img ng-src="{{video.thumbnails.default.url}}"></a></td>
+			<td>{{video.statistics.viewCount}}</td>
+			<td>{{video.statistics.likeCount}}</td>
+		</tr>
+	</tbody>
+</table>
