@@ -3,10 +3,13 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="./css/custom.css" />
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
 	</head>
 	<body>
-
+		
 		<div class="container-flow" ng-controller="topVController as topVCtrl">
+			<div ng-include="'includes/navbar.html'"></div>
 			<div class="row">
 				<div class="col-lg-2" ng-include="'includes/sidebar.html'"></div>
 				<div class="col-lg-10" ng-include="'includes/data-table.html'"></div>

@@ -1,18 +1,61 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<td>Title</td>
-			<td>Thumbnail</td>
-			<td>Views</td>
-			<td>Likes</td>
+			<td>
+				<a href="#" ng-click="setSort('upload');  sortReverse = !sortReverse">Uploaded 
+            		<span ng-show="sortType == 'upload' && !sortReverse" class="fa fa-caret-down"></span>
+            		<span ng-show="sortType == 'upload' && sortReverse" class="fa fa-caret-up"></span>
+          		</a>
+          	</td>
+			<td>
+				<a href="#" ng-click="setSort('title');  sortReverse = !sortReverse">Title 
+            		<span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-down"></span>
+            		<span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-up"></span>
+          		</a>
+          	</td>
+			<td>&nbsp;</td>
+			<td>
+				<a href="#" ng-click="setSort('views'); sortReverse = !sortReverse">Views 
+            		<span ng-show="sortType == 'views' && !sortReverse" class="fa fa-caret-down"></span>
+            		<span ng-show="sortType == 'views' && sortReverse" class="fa fa-caret-up"></span>
+          		</a>
+          	</td>
+			<td>
+				<a href="#" ng-click="setSort('likes');  sortReverse = !sortReverse">Likes 
+            		<span ng-show="sortType == 'likes' && !sortReverse" class="fa fa-caret-down"></span>
+            		<span ng-show="sortType == 'likes' && sortReverse" class="fa fa-caret-up"></span>
+          		</a>
+          	</td>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="video in videos">
+		<tr ng-repeat="video in pagedItems[currentPage] | orderBy:sortType:sortReverse">
+			<td>{{video.publishedAt | date : "dd MMM yyyy" }}</td>
 			<td>{{video.title}}</td>
 			<td><a ng-href="https://www.youtube.com/watch?v={{video.resourceId.videoId}}"><img ng-src="{{video.thumbnails.default.url}}"></a></td>
 			<td>{{video.statistics.viewCount}}</td>
 			<td>{{video.statistics.likeCount}}</td>
 		</tr>
 	</tbody>
+	 <tfoot>
+        <td colspan="6">
+            <div class="pull-right">
+                <ul class="pagination">
+                    <li ng-class="{disabled: currentPage == 0}">
+                        <a href ng-click="prevPage()">« Prev</a>
+                    </li>
+                
+                    <li ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap) "
+                        ng-class="{active: n == currentPage}"
+                    ng-click="setPage()">
+                        <a href ng-bind="n + 1">1</a>
+                    </li>
+                 
+                    <li ng-class="{disabled: (currentPage) == pagedItems.length - 1}">
+                        <a href ng-click="nextPage()">Next »</a>
+                    </li>
+                </ul>
+            </div>
+        </td>
+    </tfoot>
 </table>

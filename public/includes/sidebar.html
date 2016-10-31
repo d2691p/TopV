@@ -1,5 +1,5 @@
-<div ng-include="'includes/search-bar.html'"></div>
 <div class="list-group">
+	<p>Channels</p>
     <a ng-repeat="channel in channelSnippets" class="list-group-item list-group-item-action" ng-click="getChannelDetails(channel.channelId)">
         <img ng-src="{{channel.thumbnails.default.url}}">
         <span>{{channel.channelTitle}}</span>
